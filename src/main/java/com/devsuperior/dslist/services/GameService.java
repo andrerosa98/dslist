@@ -7,6 +7,7 @@ import com.devsuperior.dslist.repositories.GameRepository;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import projections.GameMinProjection;
 
 import java.util.List;
 
@@ -22,8 +23,15 @@ public class GameService {
         return new GameDTO(result);
     }
 
+    @Transactional(readOnly = true)
     public List<GameMinDTO> findAll(){
         List<Game> result = gameRepository.findAll();
         return result.stream().map(GameMinDTO::new).toList();
+    }
+
+    @Transactional(readOnly = true)
+    public List<GameMinDTO> findByList(Long listId){
+        List<GameMinProjection> result = gameRepository.searchByList(listId);
+        return result.stream().map(GameMinDTO::new).toList(); //Pega a função projection e converte para uma lista de GameMinDTO
     }
 }
