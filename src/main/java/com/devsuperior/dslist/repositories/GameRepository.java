@@ -3,7 +3,7 @@ package com.devsuperior.dslist.repositories;
 import com.devsuperior.dslist.entities.Game;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
-import projections.GameMinProjection;
+import com.devsuperior.dslist.projections.GameMinProjection;
 
 import java.util.List;
 
@@ -11,7 +11,7 @@ public interface GameRepository extends JpaRepository<Game, Long> {
 
 	//Quando usa nativeQuery, o resultado tem que ser um projection
     @Query(nativeQuery = true, value = """ 
-		SELECT tb_game.id, tb_game.title, tb_game.game_year AS `year`, tb_game.img_url AS imgUrl,
+		SELECT tb_game.id, tb_game.title, tb_game.game_year AS gameYear, tb_game.img_url AS imgUrl,
 		tb_game.short_description AS shortDescription, tb_belonging.position
 		FROM tb_game
 		INNER JOIN tb_belonging ON tb_game.id = tb_belonging.game_id

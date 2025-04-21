@@ -7,7 +7,7 @@ import com.devsuperior.dslist.repositories.GameRepository;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import projections.GameMinProjection;
+import com.devsuperior.dslist.projections.GameMinProjection;
 
 import java.util.List;
 
